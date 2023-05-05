@@ -5,7 +5,6 @@ require_once("public/php/classes/Photo.php");
 
 const AUTHORIZE_URL = "https://discord.com/api/oauth2/authorize";
 const TOKEN_URL = "https://discord.com/api/oauth2/token";
-const REDIRECT_URL = "http://localhost:80/index.php";
 const USER_API_URL = "https://discordapp.com/api/users/@me";
 
 $action = get("action");
