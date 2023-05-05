@@ -10,7 +10,7 @@ namespace classes;
 class Photo
 {
     /**
-     * @var int $id L'ID de la photo.
+     * @var string $id L'ID de la photo.
      */
     private $id;
 
@@ -38,13 +38,13 @@ class Photo
 
     /**
      * Constructeur de la photo, initialise les attributs.
-     * @param int $id L'ID discord de 'auteur
+     * @param string $id L'ID discord de 'auteur
      * @param string $author L'auteur de la photo
      * @param string $title Le titre de la photo
      * @param string $descriptionP La description de la photo
      * @param string|null $dateS La date de soumission de la photo(<code>Y-m-d H:i:s</code>)
      */
-    public function __construct(int $id, string $author, string $title, string $descriptionP, string $dateS = null)
+    public function __construct(string $id, string $author, string $title, string $descriptionP, string $dateS = null)
     {
         $this->id = $id;
         $this->dateS = $dateS;
@@ -71,10 +71,10 @@ class Photo
 
     /**
      * Supprime la photo d'ID donné.
-     * @param int $id L'ID de la photo à supprimer
+     * @param string $id L'ID de la photo à supprimer
      * @return void
      */
-    public static function delete_from_database(int $id): void
+    public static function delete_from_database(string $id): void
     {
         $connection = connecter();
         $prep_req = $connection->prepare("DELETE FROM Photo WHERE id=:ip");
@@ -86,9 +86,9 @@ class Photo
 
     /**
      * Getter pour id
-     * @return int id
+     * @return string id
      */
-    public function get_id(): int
+    public function get_id(): string
     {
         return $this->id;
     }
@@ -169,9 +169,9 @@ class Photo
 
     /**
      * Insert dans la base de données les attributs actuels.
-     * @return int l'ID de la photo une fois insérée dans la base de données
+     * @return string l'ID de la photo une fois insérée dans la base de données
      */
-    public function insert_to_database(): int
+    public function insert_to_database(): string
     {
         $connection = connecter();  // on se connecte à la database
         $prep_req = $connection->prepare("INSERT INTO Photo (id, dateS, author, title, descriptionP) VALUE (:id, NOW(), :author, :title, :descriptionP)");
