@@ -45,6 +45,9 @@ switch ($action) {
     case "connect":
         include_once "public/php/actions/connect.php";
         break;
+    case "disconnect":
+        include_once "public/php/actions/disconnect.php";
+        break;
     default:
         $body = "<h2>Ceci est une action par défaut</h2>";
         break;
