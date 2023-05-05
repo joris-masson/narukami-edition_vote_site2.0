@@ -1,0 +1,144 @@
+html {
+    background-color: paleturquoise;
+}
+
+body {
+    text-align: center;
+}
+
+header {
+    position: fixed;
+}
+
+nav {
+    margin-top: -100px;
+    margin-left: -50px;
+}
+
+.about {
+    margin-left: 20%;
+    margin-right: 20%;
+    text-align: left;
+}
+
+li.menu {
+    float: left;
+    list-style-type: none;
+    background-color: rgba(227, 169, 225, 0.6);
+}
+
+a:visited.delete {
+    color: red;
+}
+
+.error {
+    color: red;
+}
+
+a {
+    display: block;
+    padding: 10px;
+    color: blue
+}
+
+a:visited > :not(.delete) {
+    text-decoration: none;
+    color: blue;
+}
+
+a:hover {
+    color: #b500ff;
+    transition-duration: 0.3s;
+}
+
+h1 {
+    color: palevioletred;
+    text-decoration: underline;
+}
+
+p {
+    text-align: center;
+}
+
+table {
+    overflow-x: auto;
+    display: block;
+    border-collapse: collapse;
+    min-width: 270px;
+    max-width: 370px;
+}
+
+table {
+    border-radius: 7px;
+    margin: auto;
+}
+
+table, td, tr {
+    border: 2px solid;
+    width: 50%;
+    color: blueviolet;
+}
+
+tbody > tr {
+    white-space: nowrap;
+}
+
+tbody > tr:hover {
+    transition-duration: 0.2s;
+    background-color: #e3a9e1;
+}
+
+label {
+    display: block;
+    padding-bottom: 10px;
+}
+
+button {
+    display: block;
+    margin-left: 50%;
+}
+
+textarea {
+    vertical-align: middle;
+}
+
+textarea, input, img {
+    background-color: lightgreen;
+    border: 2px solid lightgreen;
+    border-radius: 5px;
+    transition-duration: 0.2s;
+}
+
+.idP {
+    width: 15px;
+}
+
+.author {
+    width: 50px;
+}
+
+.title {
+    width: 200px;
+}
+
+.delete:hover {
+    color: tomato;
+}
+
+input.confirm-button:hover {
+    background-color: tomato;
+    transition-duration: 0.2s;
+}
+
+.actions > a {
+    padding: 3px;
+}
+
+.photo_title {
+    text-decoration: underline;
+}
+
+img {
+    max-width: 500px;
+}
+
