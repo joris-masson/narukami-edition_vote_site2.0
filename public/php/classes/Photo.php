@@ -135,7 +135,7 @@ class Photo
      */
     public function show_row(): string
     {
-        if ($this->id != $_SESSION["discord_id"]) {
+        if (!isset($_SESSION["discord_id"]) || $this->id != $_SESSION["discord_id"]) {
             return "<tr><td class='author'>$this->author</td><td class='title'><a href='index.php?action=detail&id=$this->id'>$this->title</a></td></tr>";
         } else {
             return "<tr><td class='author'>$this->author</td><td class='title'><a href='index.php?action=detail&id=$this->id'>$this->title</a></td><td class='actions'><a class='delete' href='index.php?action=delete&id=$this->id'>Effacer</a><a href='index.php?action=update&id=$this->id'>Mettre à jour</a></td></tr>";
@@ -148,18 +148,18 @@ class Photo
      */
     public function show_detail(): string
     {
-        if ($this->id != $_SESSION["discord_id"]) {
+        if (!isset($_SESSION["discord_id"]) || $this->id != $_SESSION["discord_id"]) {
             return <<<HTML
                 <h2>$this->author: <span class="photo_title">$this->title</span></h2>
                 <p>Description: $this->descriptionP</p>              
-                <img src='public/images/photos/$this->id.png' alt='$this->title'>
+                <img src='https://jo.narukami-edition.fr/public/images/photos/$this->id.png' alt='$this->title'>
                 <p>La photo a été soumise le: <code>$this->dateS</code></p>
                 HTML;
         } else {
             return <<<HTML
                 <h2>$this->author: <span class="photo_title">$this->title</span></h2>
                 <p>Description: $this->descriptionP</p>              
-                <img src='public/images/photos/$this->id.png' alt='$this->title'>
+                <img src='https://jo.narukami-edition.fr/public/images/photos/$this->id.png' alt='$this->title'>
                 <p>La photo a été soumise le: <code>$this->dateS</code></p>
                 <a id="update" href="index.php?action=update&id=$this->id">Mettre à jour la photo</a>
                 <a class="delete" href="index.php?action=delete&id=$this->id">Supprimer la photo</a>

@@ -13,6 +13,7 @@
             <?php echo $menu ?>
         </ul>
     </nav>
+    <br>
     <p><?php echo $auth ?></p>
 </header>
 <?php echo $body ?>
