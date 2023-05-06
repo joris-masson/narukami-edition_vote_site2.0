@@ -12,7 +12,7 @@ if (!empty($photo)) {
 }
 
 $body .= <<<HTML
-<form method="post" action="index.php?action=add" enctype="multipart/form-data">
+<form method="post" action="/index.php?action=add" enctype="multipart/form-data">
     <label>(Titre
         <input type="text" name="title" value="$title">)
         <br>

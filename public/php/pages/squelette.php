@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Narumaki Edition</title>
     <link href="/public/css/style.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/public/images/favicon.ico">
 </head>
 <body>
 <h1>Les photos</h1>

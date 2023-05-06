@@ -1,5 +1,9 @@
 <?php
-function exchange_token($code) {
+
+use classes\Photo;
+
+function exchange_token($code)
+{
     $data = array(
         "client_id" => OAUTH2_CLIENT_ID,
         "client_secret" => OAUTH2_CLIENT_SECRET,
@@ -89,4 +93,20 @@ function connecter(): PDO
         echo "Connection à MySQL impossible : ", $e->getMessage();
         die();
     }
+}
+
+function construct_photo_list(): string
+{
+    $res = "";
+    $connection = connecter();
+    $query = $connection->query("SELECT * FROM Photo");
+    $query->setFetchMode(PDO::FETCH_OBJ);
+    $index = 0;
+    while ($elem = $query->fetch()) {
+        // Affichage des enregistrements
+        $photo = new Photo($elem->id, $elem->author, $elem->title, $elem->descriptionP, $elem->dateS);
+        $res .= $photo->show_vote($index);
+        $index++;
+    }
+    return $res;
 }

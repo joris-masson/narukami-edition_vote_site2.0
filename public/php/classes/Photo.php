@@ -167,6 +167,23 @@ class Photo
         }
     }
 
+    public function show_vote($index): string
+    {
+        return <<<HTML
+                <fieldset class="photo">
+                    <label><input name="data[$index][id]" hidden="hidden" value="$this->id"></label>
+                    <h3>$this->author</h3>
+                    <h4>$this->title</h4>
+                    <p>$this->descriptionP</p>
+                    <img src="https://jo.narukami-edition.fr/public/images/photos/$this->id.png" alt="Photo de $this->author">
+                    <label>Titre<input name="data[$index][title]" type="number" min="0" max="1"></label>
+                    <label>Description<input name="data[$index][description]" type="number" min="0" max="4"></label>
+                    <label>Photo<input name="data[$index][photo]" type="number" min="0" max="6"></label>
+                </fieldset>
+                HTML;
+
+    }
+
     /**
      * Insert dans la base de données les attributs actuels.
      * @return string l'ID de la photo une fois insérée dans la base de données
