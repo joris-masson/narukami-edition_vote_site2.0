@@ -14,4 +14,6 @@ if (!isset($_SESSION["discord_id"])) {
     }
     $id = $_SESSION["discord_id"];
     file_put_contents("./public/data/votes/$id.txt", $res);
+    header("Location: https://www.youtube.com/watch?v=YPN0qhSyWy8");
+    die();
 }
