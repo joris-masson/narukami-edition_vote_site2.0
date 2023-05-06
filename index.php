@@ -50,8 +50,8 @@ switch ($action) {
     case "about":
         include_once "public/php/actions/about.php";
         break;
-    case "amalia" || "nemesis" || "zhongzhong" || "teddy" || "ning" || "jo":
-        include_once "public/php/actions/teapot.php";
+    case "vote":
+        include_once "public/php/actions/vote.php";
         break;
     default:
         $body = "<h2>Ceci est une action par défaut</h2>";
