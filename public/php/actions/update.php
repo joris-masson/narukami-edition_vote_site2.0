@@ -10,12 +10,16 @@ use classes\Photo;
 
 $id = key_exists('id', $_GET) ? $_GET['id'] : null;
 
-if (!is_numeric($_GET["id"])) {
-    $body = "<h2 class='error'>Erreur, id incorrect.</h2>";
+if (IS_VOTING_TIME) {
+    $body = "<h2>Les votes sont en cours, impossible de modifier la photo pour le moment.</h2>";
+} else if (!isset($_SESSION["discord_id"])) {
+    $body = "<h2>Impossible de modifier une photo sans être connecté.</h2>";
+} else if (!is_numeric($_GET["id"])) {
+    $body = "<h2 class='error'>Erreur, ID incorrect.</h2>";
 } else if ($id != $_SESSION["discord_id"]) {
-    $body = "<h2>Vous n'avez pas l'autorisation de modifier cette photo</h2>";
+    $body = "<h2>Vous n'avez pas l'autorisation de modifier cette photo.</h2>";
 } else {
-    $body = "<h1>Mise à jour de la photo $id</h1>";
+    $body = "<h2>Mise à jour de la photo $id</h2>";
     if (!isset($_FILES["photo"]) && file_exists("public/images/temp/$id.png")) {
         unlink("public/images/temp/$id.png"); // vide le temp
     }

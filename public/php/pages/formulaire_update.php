@@ -20,7 +20,7 @@ $body .= <<<HTML
     <label>Photo
         <input type="file" name="photo">
     </label>
-    <img src='public/images/photos/$id.png' alt='$title'>
+    <img src='https://jo.narukami-edition.fr/public/images/photos/$id.png' alt='$title'>
     
     <button type="submit">Enregistrer</button>
 </form>

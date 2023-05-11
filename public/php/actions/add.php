@@ -10,7 +10,9 @@ use classes\Photo;
 
 $body = "<h2>Ajoutons une photo!</h2>";
 
-if (!isset($_SESSION["discord_id"])) {
+if (IS_VOTING_TIME) {
+    $body = "<h2>Les votes sont en cours, impossible d'ajouter une photo</h2>";
+} else if (!isset($_SESSION["discord_id"])) {
     $body = "<h2>Il faut être connecté pour ajouter une photo.</h2>";
 } else if (!isset($_POST["descriptionP"]) && !isset($_FILES["photo"])) { // montre le formulaire si les variables ne sont pas définies dans la requête POST
     include_once("public/php/pages/formulaire.php");

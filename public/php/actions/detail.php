@@ -10,7 +10,9 @@ use classes\Photo;
 
 $id = key_exists('id', $_GET) ? $_GET['id'] : null;
 
-if (!is_numeric($_GET["id"])) {
+if (!CAN_SEE_PHOTOS && $_SESSION["discord_id"] != $id) {
+    $body = "<h2>Impossible de voir le détail des photos qui ne vous appartiennent pas maintenant.</h2>";
+} else if (!is_numeric($_GET["id"])) {
     $body = "<h2 class='error'>Erreur, id incorrect.</h2>";
 } else {
     $connection = connecter();
