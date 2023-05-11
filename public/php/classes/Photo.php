@@ -70,12 +70,11 @@ class Photo
      * @param int $id l'ID de la photo à récupérer
      * @return array
      */
-    public static function fetch_all_values(int $id): array
+    public static function fetch_all_values(string $id): array
     {
         $connection = connecter();
 
         $prep_req = $connection->prepare("SELECT * FROM Photo WHERE id=:id");
-        var_dump($id);
         $prep_req->execute(array(':id' => $id));
         $connection = null;
         var_dump($id);
