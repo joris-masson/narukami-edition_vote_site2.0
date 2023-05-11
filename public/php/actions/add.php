@@ -24,6 +24,8 @@ if (IS_VOTING_TIME) {
         $_SESSION["username"],
         !empty($_POST["title"]) ? $_POST['title'] : "Sans titre",
         trim($_POST['descriptionP']),
+        isset($_POST["show_result"]),
+        $_SESSION["avatar_url"]
     );
 
     $errors = check_errors_add($photo->get_descriptionP(), $file);

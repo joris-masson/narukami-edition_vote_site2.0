@@ -37,6 +37,16 @@ class Photo
     private $descriptionP;
 
     /**
+     * @var bool $show_result Est-ce que le score est affiché en public
+     */
+    private $show_result;
+
+    /**
+     * @var string URL de l'image de profil
+     */
+    private $avatar_url;
+
+    /**
      * Constructeur de la photo, initialise les attributs.
      * @param string $id L'ID discord de 'auteur
      * @param string $author L'auteur de la photo
@@ -44,13 +54,15 @@ class Photo
      * @param string $descriptionP La description de la photo
      * @param string|null $dateS La date de soumission de la photo(<code>Y-m-d H:i:s</code>)
      */
-    public function __construct(string $id, string $author, string $title, string $descriptionP, string $dateS = null)
+    public function __construct(string $id, string $author, string $title, string $descriptionP, bool $show_result = false, string $avatar_url = "", string $dateS = null)
     {
         $this->id = $id;
         $this->dateS = $dateS;
         $this->author = $author;
         $this->title = $title;
         $this->descriptionP = $descriptionP;
+        $this->show_result = $show_result;
+        $this->avatar_url = $avatar_url;
     }
 
     /**
@@ -130,6 +142,24 @@ class Photo
     }
 
     /**
+     * Getter pour show_result
+     * @return bool show_result
+     */
+    public function get_show_result(): bool
+    {
+        return $this->show_result;
+    }
+
+    /**
+     * Getter pour avatar_url
+     * @return string avatar_url
+     */
+    public function ger_avatar_url(): string
+    {
+        return $this->avatar_url;
+    }
+
+    /**
      * Affichage HTML en ligne de tableau de la photo.
      * @return string HTML
      */
@@ -171,14 +201,14 @@ class Photo
     {
         return <<<HTML
                 <fieldset class="photo">
-                    <label><input name="data[$index][id]" hidden="hidden" value="$this->id"></label>
+                    <label><input name="data[$index][id]" hidden="hidden" value="$this->id" required></label>
                     <h3>$this->author</h3>
                     <h4>$this->title</h4>
                     <p>$this->descriptionP</p>
                     <img src="https://jo.narukami-edition.fr/public/images/photos/$this->id.png" alt="Photo de $this->author">
-                    <label>Titre<input name="data[$index][title]" type="number" min="0" max="1"></label>
-                    <label>Description<input name="data[$index][description]" type="number" min="0" max="4"></label>
-                    <label>Photo<input name="data[$index][photo]" type="number" min="0" max="6"></label>
+                    <label>Titre<input name="data[$index][title]" type="number" min="0" max="1" required></label>
+                    <label>Description<input name="data[$index][description]" type="number" min="0" max="4" required></label>
+                    <label>Photo<input name="data[$index][photo]" type="number" min="0" max="6" required></label>
                 </fieldset>
                 HTML;
 
@@ -191,12 +221,14 @@ class Photo
     public function insert_to_database(): string
     {
         $connection = connecter();  // on se connecte à la database
-        $prep_req = $connection->prepare("INSERT INTO Photo (id, dateS, author, title, descriptionP) VALUE (:id, NOW(), :author, :title, :descriptionP)");
+        $prep_req = $connection->prepare("INSERT INTO Photo (id, dateS, author, title, descriptionP, showResult, avatarUrl) VALUE (:id, NOW(), :author, :title, :descriptionP, :showResult, :avatarUrl)");
         $prep_req->execute(array(
             ":id" => $this->id,
             ":author" => $this->author,
             ":title" => $this->title,
             ":descriptionP" => $this->descriptionP,
+            ":showResult" => $this->show_result ? 1 : 0,
+            ":avatarUrl" => $this->avatar_url
         ));
         $this->dateS = date('Y-m-d H:i:s', time());
         $connection = null;  // on ferme la connexion
@@ -212,10 +244,11 @@ class Photo
     public function update_in_database(): void
     {
         $connection = connecter();
-        $prep_req = $connection->prepare("UPDATE Photo SET title=:title, descriptionP=:descriptionP WHERE id=:id");
+        $prep_req = $connection->prepare("UPDATE Photo SET title=:title, descriptionP=:descriptionP, showResult=:showResult WHERE id=:id");
         $prep_req->execute(array(
             ":title" => $this->title,
             ":descriptionP" => $this->descriptionP,
+            ":showResult" => $this->show_result ? 1 : 0,
             ":id" => $this->id
         ));
         if (file_exists("public/images/temp/$this->id.png")) {

@@ -34,6 +34,8 @@ if (IS_VOTING_TIME) {
         $author = $_SESSION["username"];
         $title = !empty($_POST["title"]) ? $_POST['title'] : "Sans titre";
         $descriptionP = trim($_POST['descriptionP']);
+        $show_result = isset($_POST["show_result"]);
+
 
         $errors = check_errors_update($descriptionP);
 
@@ -49,6 +51,7 @@ if (IS_VOTING_TIME) {
             <input type='hidden' name='author' value=''/>
             <input type='hidden' name='title' value='$title'/>
             <input type='hidden' name='descriptionP' value='$descriptionP'/>
+            <input type="hidden" name="show_result" value="$show_result">
             Etes vous sûr de vouloir mettre à jour cette photo ?
             <p><input class="confirm-button" type='submit' value='Mettre à jour'><a href='index.php?action=list'>Annuler</a></p>
             </form>

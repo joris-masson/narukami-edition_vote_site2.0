@@ -5,6 +5,7 @@ require_once("public/php/classes/Photo.php");
 
 const IS_VOTING_TIME = false;
 const CAN_SEE_PHOTOS = true;
+const CAN_SEE_RESULTS = true;
 
 const AUTHORIZE_URL = "https://discord.com/api/oauth2/authorize";
 const TOKEN_URL = "https://discord.com/api/oauth2/token";
@@ -55,6 +56,9 @@ switch ($action) {
         break;
     case "vote":
         include_once "public/php/actions/vote.php";
+        break;
+    case "results":
+        include_once "public/php/actions/results.php";
         break;
     default:
         $body = "<h2>Ceci est une action par défaut</h2>";

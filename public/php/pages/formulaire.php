@@ -19,13 +19,17 @@ $body .= <<<HTML
     </label>
     
     <label>Description
-        <textarea name="descriptionP" rows="10" cols="50">$descriptionP</textarea>
+        <textarea name="descriptionP" rows="10" cols="50" required>$descriptionP</textarea>
         <span class="error">{$errors["descriptionP"]}</span><br/>
     </label>
     
     <label>Photo
-        <input type="file" name="photo">
+        <input type="file" name="photo" required>
         <span class="error">{$errors["photo"]}</span><br/>
+    </label>
+    
+    <label>Voulez-vous que votre score soit affiché en public à la fin des votes?
+        <input type="checkbox" name="show_result">
     </label>
     
     <button type="submit">Enregistrer</button>

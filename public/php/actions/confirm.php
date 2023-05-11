@@ -25,6 +25,7 @@ if ($type == 'confirmupdate') {
         $_POST['author'],
         $_POST['title'],
         $_POST['descriptionP'],
+        $_POST["show_result"] === "true"
     );
     $photo->update_in_database();
     $body .= "<h2>Photo mise à jour!</h2>";

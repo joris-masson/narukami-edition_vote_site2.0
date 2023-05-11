@@ -22,6 +22,10 @@ $body .= <<<HTML
     </label>
     <img src='https://jo.narukami-edition.fr/public/images/photos/$id.png' alt='$title'>
     
+    <label>Voulez-vous que votre score soit affiché en public à la fin des votes?
+        <input type="checkbox" name="show_result">
+    </label>
+    
     <button type="submit">Enregistrer</button>
 </form>
 HTML;
