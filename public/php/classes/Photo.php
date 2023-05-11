@@ -75,6 +75,7 @@ class Photo
         $connection = connecter();
 
         $prep_req = $connection->prepare("SELECT * FROM Photo WHERE id=:id");
+        var_dump($id);
         $prep_req->execute(array(':id' => $id));
         $connection = null;
         var_dump($id);
