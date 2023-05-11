@@ -5,7 +5,6 @@ use classes\Photo;
 $res = calc_results();
 $body = "<h2>Résultats!</h2>";
 
-var_dump($res);
 foreach ($res as $id => $value) {
     $data_photo = Photo::fetch_all_values($id);
     $author = $data_photo["author"];

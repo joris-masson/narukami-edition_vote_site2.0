@@ -63,6 +63,7 @@ class Photo
         $this->descriptionP = $descriptionP;
         $this->show_result = $show_result;
         $this->avatar_url = $avatar_url;
+        var_dump($avatar_url);
     }
 
     /**
