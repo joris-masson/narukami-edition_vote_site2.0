@@ -5,7 +5,7 @@ if (!isset($_SESSION["discord_id"]) || !isset($_SESSION["username"]) || !isset($
     } else {
         $user_info = get_user_info(exchange_token(get("code")));
         $_SESSION["discord_id"] = $user_info->id;
-        $_SESSION["avatar_url"] = "https://cdn.discordapp.com/avatars/$user_info->avatar.png";
+        $_SESSION["avatar_url"] = "https://cdn.discordapp.com/avatars/$user_info->discord_id/$user_info->avatar.png";
         if (isset($user_info->global_name) && isset($user_info->display_name)) {
             $_SESSION["use_new_names"] = true;
             $_SESSION["global_name"] = $user_info->global_name;
