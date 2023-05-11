@@ -21,6 +21,11 @@ nav {
     text-align: left;
 }
 
+code {
+    background-color: rgba(157, 157, 157, 0.5);
+    border-radius: 2px;
+}
+
 li.menu {
     float: left;
     list-style-type: none;
