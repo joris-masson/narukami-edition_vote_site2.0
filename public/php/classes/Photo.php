@@ -77,7 +77,7 @@ class Photo
         $prep_req = $connection->prepare("SELECT * FROM Photo WHERE id=:id");
         $prep_req->execute(array(':id' => $id));
         $connection = null;
-
+        var_dump($prep_req->fetch());
         return $prep_req->fetch();
     }
 
