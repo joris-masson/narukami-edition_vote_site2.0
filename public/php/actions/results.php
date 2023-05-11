@@ -3,6 +3,7 @@
 use classes\Photo;
 
 $res = calc_results();
+arsort($res);
 $body = "<h2>Résultats!</h2>";
 
 foreach ($res as $id => $value) {
