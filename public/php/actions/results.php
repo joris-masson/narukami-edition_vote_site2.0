@@ -7,7 +7,7 @@ $body = "<h2>Résultats!</h2>";
 
 var_dump($res);
 foreach ($res as $id => $value) {
-    $data_photo = Photo::fetch_all_values(intval($id));
+    $data_photo = Photo::fetch_all_values($id);
     $author = $data_photo["author"];
     $avatar_url = $data_photo["avatarUrl"];
     $body .= "<h3>$author</h3>";
