@@ -20,6 +20,7 @@ $type = key_exists('type', $_POST) ? $_POST['type'] : null;
 
 if ($type == 'confirmupdate') {
     $body = "<h1>Mise à jour de la photo $id</h1>";
+    var_dump($_POST);
     $photo = new Photo(
         $_POST['id'],
         $_POST['author'],
