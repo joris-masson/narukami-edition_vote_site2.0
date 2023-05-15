@@ -1,15 +1,8 @@
 <?php
 require_once "admin/php/logins.php";
+require_once "config.php";
 require_once "public/php/utils.php";
 require_once("public/php/classes/Photo.php");
-
-const IS_VOTING_TIME = false;
-const CAN_SEE_PHOTOS = true;
-const CAN_SEE_RESULTS = true;
-
-const AUTHORIZE_URL = "https://discord.com/api/oauth2/authorize";
-const TOKEN_URL = "https://discord.com/api/oauth2/token";
-const USER_API_URL = "https://discordapp.com/api/users/@me";
 
 $action = get("action");
 
@@ -18,7 +11,6 @@ $errors = array("descriptionP" => null, "photo" => null);  // pour la gestion de
 $author = null;
 $title = null;
 $descriptionP = null;
-$dateP = null;
 $photo = null;
 
 session_start();
@@ -61,7 +53,7 @@ switch ($action) {
         include_once "public/php/actions/results.php";
         break;
     default:
-        $body = "<h2>Ceci est une action par défaut</h2>";
+        $body = "<h2>Bienvenue sur Narukami Edition(le site)!</h2>";
         break;
 }
 
