@@ -41,9 +41,12 @@ a:visited.delete {
 }
 
 a {
+    color: blue
+}
+
+li.menu > a {
     display: block;
     padding: 10px;
-    color: blue
 }
 
 a:visited > :not(.delete) {

@@ -2,17 +2,21 @@
 
 use classes\Photo;
 
-$res = calc_results();
-arsort($res);
-$body = "<h2>Résultats!</h2>";
+if (!CAN_SEE_RESULTS) {
+    $body = "<h2>Les résultats ne sont pas disponibles pour le moment.</h2>";
+} else {
+    $res = calc_results();
+    arsort($res);
+    $body = "<h2>Résultats!</h2>";
 
-foreach ($res as $id => $value) {
-    $data_photo = Photo::fetch_all_values($id);
-    $author = $data_photo["author"];
-    $avatar_url = $data_photo["avatarUrl"];
-    $body .= "<h3>$author</h3>";
-    $body .= "<img src='$avatar_url' alt='Image de profil de $author'>";
-    $body .= "<p>Avec $value points!</p>";
+    foreach ($res as $id => $value) {
+        $data_photo = Photo::fetch_all_values($id);
+        $author = $data_photo["author"];
+        $avatar_url = $data_photo["avatarUrl"];
+        $body .= "<h3>$author</h3>";
+        $body .= "<img src='$avatar_url' alt='Image de profil de $author'>";
+        $body .= "<p>Avec $value points!</p>";
+    }
 }
 
 function init_res_array(): array

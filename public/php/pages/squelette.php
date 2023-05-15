@@ -15,6 +15,7 @@
         </ul>
     </nav>
     <br>
+    <br>
     <p><?php echo $auth ?></p>
 </header>
 <?php echo $body ?>

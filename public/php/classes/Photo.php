@@ -63,7 +63,6 @@ class Photo
         $this->descriptionP = $descriptionP;
         $this->show_result = $show_result;
         $this->avatar_url = $avatar_url;
-        var_dump($avatar_url);
     }
 
     /**
@@ -168,7 +167,7 @@ class Photo
         if (!isset($_SESSION["discord_id"]) || $this->id != $_SESSION["discord_id"]) {
             return "<tr><td class='author'>$this->author</td><td class='title'><a href='index.php?action=detail&id=$this->id'>$this->title</a></td></tr>";
         } else {
-            return "<tr><td class='author'>$this->author</td><td class='title'><a href='index.php?action=detail&id=$this->id'>$this->title</a></td><td class='actions'><a class='delete' href='index.php?action=delete&id=$this->id'>Effacer</a><a href='index.php?action=update&id=$this->id'>Mettre à jour</a></td></tr>";
+            return "<tr><td class='author'>$this->author</td><td class='title'><a href='index.php?action=detail&id=$this->id'>$this->title</a></td><td class='actions'><a class='delete' href='index.php?action=delete&id=$this->id'>Effacer</a><br><a href='index.php?action=update&id=$this->id'>Mettre à jour</a></td></tr>";
         }
     }
 

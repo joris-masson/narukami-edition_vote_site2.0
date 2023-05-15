@@ -110,3 +110,16 @@ function construct_photo_list(): string
     }
     return $res;
 }
+
+function get_participants_ids(): array
+{
+    $connection = connecter();
+    $query = $connection->query("SELECT id FROM Photo");
+    $query->setFetchMode(PDO::FETCH_OBJ);
+    $res = array();
+    while ($elem = $query->fetch()) {
+        $res[] = $elem->id;
+    }
+    $connection = null;
+    return $res;
+}

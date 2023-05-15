@@ -6,6 +6,8 @@
  * @uses Photo
  */
 
+include_once "public/php/utils.php";
+
 use classes\Photo;
 
 $body = "<h2>Ajoutons une photo!</h2>";
@@ -14,6 +16,10 @@ if (IS_VOTING_TIME) {
     $body = "<h2>Les votes sont en cours, impossible d'ajouter une photo</h2>";
 } else if (!isset($_SESSION["discord_id"])) {
     $body = "<h2>Il faut être connecté pour ajouter une photo.</h2>";
+} else if (in_array($_SESSION["discord_id"], get_participants_ids())) {
+    $id = $_SESSION["discord_id"];
+    $body = "<h2>Vous avez déjà une <a href='index.php?action=detail&id=$id'>photo</a> de soumise</h2>";
+    $body .= "<p>Voulez-vous la <a class='delete' href='index.php?action=delete&id=$id'>supprimer</a> ou la <a href='index.php?action=update&id=$id'>modifier</a>?";
 } else if (!isset($_POST["descriptionP"]) && !isset($_FILES["photo"])) { // montre le formulaire si les variables ne sont pas définies dans la requête POST
     include_once("public/php/pages/formulaire.php");
 } else {
