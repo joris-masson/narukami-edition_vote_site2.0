@@ -20,12 +20,13 @@ $type = key_exists('type', $_POST) ? $_POST['type'] : null;
 
 if ($type == 'confirmupdate') {
     $body = "<h1>Mise à jour de la photo $id</h1>";
+    var_dump($_POST);
     $photo = new Photo(
         $_POST['id'],
         $_POST['author'],
         $_POST['title'],
         $_POST['descriptionP'],
-        $_POST["show_result"] === "true"
+        $_POST["show_result"] === "1"
     );
     $photo->update_in_database();
     $body .= "<h2>Photo mise à jour!</h2>";

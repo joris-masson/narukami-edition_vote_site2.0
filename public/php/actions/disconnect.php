@@ -1,4 +1,4 @@
 <?php
 session_unset();
 session_destroy();
-$body = "Déconnexion réussie!";
+$body = "<h2>Déconnexion réussie!</h2>";
