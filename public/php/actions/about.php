@@ -1,27 +1,21 @@
 <?php
 
-$minecraft_server_connection = @fsockopen("jo.narukami-edition.fr", "42957", $errno, $errstr, 0.5);
-if ($minecraft_server_connection >= 1) {
-    $minecraft_server_connection = "le serveur est <span style='color: green'>en ligne!</span>";
-} else {
-    $minecraft_server_connection = "le serveur est <span style='color: red'>hors ligne</span>";
-}
-
-$terraria_server_connection = @fsockopen("jo.narukami-edition.fr", "4649", $errno, $errstr, 0.5);
-if ($terraria_server_connection >= 1) {
-    $terraria_server_connection = "le serveur est <span style='color: green'>en ligne!</span>";
-} else {
-    $terraria_server_connection = "le serveur est <span style='color: red'>hors ligne</span>";
-}
-
 $body = <<<HTML
 <h2>À propos</h2>
-<h3>Serveur Minecraft</h3>
-<p>On a un serveur Minecraft, disponible à cette adresse ip: <code>jo.narukami-edition.fr:42957</code>. Actuellement, $minecraft_server_connection</p>
-<h3>Serveur Terraria</h3>
-<p>On a aussi un serveur Terraria, disponible à cette adresse ip: <code>jo.narukami-edition.fr</code>, et le port <code>4649</code>. Actuellement, $terraria_server_connection</p>
-<h4>Si les serveurs sont hors ligne</h4>
-<p>Allez <a href="http://jo.narukami-edition.fr:53134/html/fixe_wake_up.html">ici.</a></p>
-
+<p>Ce site a pour but la gestion des concours photo du serveur Narukami Edition!</p>
+<p>Il est actuellement en développement, mais est accessible au public, afin de tester quelques petites choses. Si vous
+trouvez un bug, veuillez me contacter par discord: <code>JojoAz1605#1980</code>.</p>
+<p>Le code source n'est pas encore disponible, car une bonne partie du code a été repris d'un DM de web de ma licence.
+Je ne veux donc pas prendre le risque de le partager avant les résultats de la première session. Un repo github sera disponible après!</p>
+<h2>Serveurs</h2>
+<p>On a quelques serveurs(Minecraft et Terraria) de disponibles. Plus d'infos <a href="/index.php?action=server">ici</a>.</p>
+<h2>Utilisation des données</h2>
+<p>Ce site possède une sorte de fonction de compte utilisateur, en utilisant discord, en vous connectant via discord,
+seules ses informations seront utilisées:</p>
+<ul class="about">
+<li>Votre identifiant discord</li>
+<li>Votre nom d'utilisateur(ancien ou nouveau)</li>
+<li>Le hash de votre photo de profil, permettant d'accéder à votre photo de profil</li>
+</ul>
 <iframe src="https://discord.com/widget?id=952557533514592286&theme=dark" width="350" height="500" allowtransparency="true" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
 HTML;

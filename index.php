@@ -52,6 +52,9 @@ switch ($action) {
     case "results":
         include_once "public/php/actions/results.php";
         break;
+    case "server":
+        include_once "public/php/actions/servers.php";
+        break;
     default:
         $body = "<h2>Bienvenue sur Narukami Edition(le site)!</h2>";
         break;
