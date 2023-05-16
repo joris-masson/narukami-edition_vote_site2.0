@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Narumaki Edition</title>
+    <title>Narukami Edition</title>
     <link href="/public/css/style.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="/public/images/favicon.ico">
 </head>

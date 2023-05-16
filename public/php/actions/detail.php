@@ -21,7 +21,7 @@ if (!CAN_SEE_PHOTOS && $_SESSION["discord_id"] != $id) {
     $prep_req->execute(array(':id' => $id));
     $data_photo = $prep_req->fetch();
 
-    $photo = new Photo($data_photo["id"], $data_photo["author"], $data_photo["title"], $data_photo["descriptionP"], $data_photo["dateS"]);
+    $photo = new Photo($data_photo["id"], $data_photo["author"], $data_photo["title"], $data_photo["descriptionP"], "", "", $data_photo["dateS"]);
 
     $body = $photo->show_detail();  // demande le détail de la photo et l'affiche
 
