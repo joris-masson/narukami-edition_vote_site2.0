@@ -25,7 +25,7 @@ $body .= <<<HTML
     <label>Voulez-vous que votre score soit affiché en public à la fin des votes?
         <input type="checkbox" name="show_result">
     </label>
-    
+    <p><em>(Si votre nouvelle photo n'apparaît pas, c'est à cause du cache de votre navigateur, il faut vider le cache dédié au site.)</em></p>
     <button type="submit">Enregistrer</button>
 </form>
 HTML;
