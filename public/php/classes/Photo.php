@@ -177,17 +177,18 @@ class Photo
      */
     public function show_detail(): string
     {
+        $description = $this->markdown_to_html($this->descriptionP);
         if (!isset($_SESSION["discord_id"]) || $this->id != $_SESSION["discord_id"]) {
             return <<<HTML
                 <h2>$this->author: <span class="photo_title">$this->title</span></h2>
-                <p>Description: $this->descriptionP</p>              
+                <p>Description: $description</p>         
                 <img src='https://jo.narukami-edition.fr/public/images/photos/$this->id.png' alt='$this->title'>
                 <p>La photo a été soumise le: <code>$this->dateS</code></p>
                 HTML;
         } else {
             return <<<HTML
                 <h2>$this->author: <span class="photo_title">$this->title</span></h2>
-                <p>Description: $this->descriptionP</p>              
+                <p>Description: $description</p>              
                 <img src='https://jo.narukami-edition.fr/public/images/photos/$this->id.png' alt='$this->title'>
                 <p>La photo a été soumise le: <code>$this->dateS</code></p>
                 <a id="update" href="index.php?action=update&id=$this->id">Mettre à jour la photo</a>
@@ -254,5 +255,11 @@ class Photo
             rename("public/images/temp/$this->id.png", "public/images/photos/$this->id.png");
         }
         $connection = null;
+    }
+
+    function markdown_to_html(string $str): string
+    {
+        $cwd = getcwd();
+        return shell_exec("python $cwd/public/data/scripts/convert_markdown_to_html.py \"$str\"");
     }
 }

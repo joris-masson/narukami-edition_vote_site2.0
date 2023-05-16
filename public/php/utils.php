@@ -123,9 +123,3 @@ function get_participants_ids(): array
     $connection = null;
     return $res;
 }
-
-function markdown_to_html(string $str): string
-{
-    $cwd = getcwd();
-    return shell_exec("python $cwd/public/data/scripts/convert_markdown_to_html.py \"$str\"");
-}
