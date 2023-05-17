@@ -15,49 +15,10 @@ $photo = null;
 
 session_start();
 
-switch ($action) {
-    case "add":
-        include_once "public/php/actions/add.php";
-        break;
-    case "list":
-        include_once "public/php/actions/list.php";
-        break;
-    case "delete":
-        include_once "public/php/actions/delete.php";
-        break;
-    case "update":
-        include_once "public/php/actions/update.php";
-        break;
-    case "confirm":
-        include_once "public/php/actions/confirm.php";
-        break;
-    case "detail":
-        include_once "public/php/actions/detail.php";
-        break;
-    case "greetings":
-        include_once "public/php/actions/greetings.php";
-        break;
-    case "connect":
-        include_once "public/php/actions/connect.php";
-        break;
-    case "disconnect":
-        include_once "public/php/actions/disconnect.php";
-        break;
-    case "about":
-        include_once "public/php/actions/about.php";
-        break;
-    case "vote":
-        include_once "public/php/actions/vote.php";
-        break;
-    case "results":
-        include_once "public/php/actions/results.php";
-        break;
-    case "server":
-        include_once "public/php/actions/servers.php";
-        break;
-    default:
-        $body = "<h2>Bienvenue sur Narukami Edition(le site)!</h2>";
-        break;
+if (file_exists("public/php/actions/$action.php")) {
+    include_once "public/php/actions/$action.php";
+} else {
+    $body = "<h2>Bienvenue sur Narukami Edition(le site)!</h2>";
 }
 
 include_once "public/php/pages/auth.php";

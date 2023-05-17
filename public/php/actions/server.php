@@ -18,5 +18,5 @@ $body = <<<HTML
 <h3>Serveur Terraria</h3>
 <p>On a aussi un serveur Terraria, disponible à cette adresse ip: <code>jo.narukami-edition.fr</code>, et le port <code>4649</code>. Actuellement, $terraria_server_connection</p>
 <h4>Si les serveurs sont hors ligne</h4>
-<p>Allez <a href="http://jo.narukami-edition.fr:53134/html/fixe_wake_up.html">ici.</a></p>
+<p>Allez <a href="/index.php?action=wake">ici.</a></p>
 HTML;
