@@ -10,11 +10,10 @@ Je ne veux donc pas prendre le risque de le partager avant les résultats de la 
 <h2>Serveurs</h2>
 <p>On a quelques serveurs(Minecraft et Terraria) de disponibles. Plus d'infos <a href="/index.php?action=server">ici</a>.</p>
 <h2>Utilisation des données</h2>
-<p>Ce site possède une sorte de fonction de compte utilisateur, en utilisant discord, en vous connectant via discord,
-seules ses informations seront utilisées:</p>
+<p>Ce site possède une sorte de fonction de compte utilisateur en vous connectant via discord, seules ces informations seront utilisées:</p>
 <ul class="about">
 <li>Votre identifiant discord</li>
-<li>Votre nom d'utilisateur(ancien ou nouveau)</li>
+<li>Votre nom d'utilisateur(ancien ou nouveau format)</li>
 <li>Le hash de votre photo de profil, permettant d'accéder à votre photo de profil</li>
 </ul>
 <iframe src="https://discord.com/widget?id=952557533514592286&theme=dark" width="350" height="500" allowtransparency="true" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
