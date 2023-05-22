@@ -16,5 +16,6 @@ Je ne veux donc pas prendre le risque de le partager avant les résultats de la 
 <li>Votre nom d'utilisateur(ancien ou nouveau format)</li>
 <li>Le hash de votre photo de profil, permettant d'accéder à votre photo de profil</li>
 </ul>
+Ces données sont supprimées du serveur après votre déconnexion.
 <iframe src="https://discord.com/widget?id=952557533514592286&theme=dark" width="350" height="500" allowtransparency="true" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
 HTML;

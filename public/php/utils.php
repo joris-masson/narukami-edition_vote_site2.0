@@ -123,3 +123,32 @@ function get_participants_ids(): array
     $connection = null;
     return $res;
 }
+
+function my_log(string $log): void
+{
+    $log = "[" . get("action") . "] [" . date("Y-m-d H:i:s") . "] [" . get_user_ip() . "] - " . $log;
+
+    $logfile = "admin/logs/";
+    if (isset($_SESSION["discord_id"])) {
+        $id = $_SESSION["discord_id"];
+        $logfile .= "$id.txt";
+    } else {
+        $logfile .= "common.txt";
+    }
+    $log .= "\n";
+    file_put_contents($logfile, $log, FILE_APPEND);
+}
+
+function get_user_ip()
+{
+    if (array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER) && !empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        if (strpos($_SERVER['HTTP_X_FORWARDED_FOR'], ',') > 0) {
+            $addr = explode(",", $_SERVER['HTTP_X_FORWARDED_FOR']);
+            return trim($addr[0]);
+        } else {
+            return $_SERVER['HTTP_X_FORWARDED_FOR'];
+        }
+    } else {
+        return $_SERVER['REMOTE_ADDR'];
+    }
+}

@@ -14,6 +14,7 @@ $descriptionP = null;
 $photo = null;
 
 session_start();
+my_log("yep!");
 
 if (file_exists("public/php/actions/$action.php")) {
     include_once "public/php/actions/$action.php";
