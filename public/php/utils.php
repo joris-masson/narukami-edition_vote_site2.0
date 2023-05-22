@@ -152,3 +152,52 @@ function get_user_ip()
         return $_SERVER['REMOTE_ADDR'];
     }
 }
+
+function get_blacklisted_ips(): array
+{
+    $res = array();
+    $connection = connecter();
+    $query = $connection->query("SELECT * FROM Kazooha.User WHERE blacklisted=1");
+    $query->setFetchMode(PDO::FETCH_OBJ);
+    while ($elem = $query->fetch()) {
+        $res[] = $elem->ip;
+    }
+    $connection = null;
+    return $res;
+}
+
+function set_id_of_adress(string $id, string $adress): void
+{
+    $connection = connecter();
+    $query = $connection->prepare("UPDATE Kazooha.User SET discordId=:id WHERE ip=:ip");
+    $query->execute(array(
+        ":id" => $id,
+        ":ip" => $adress
+    ));
+    $connection = null;
+}
+
+function add_address(string $adress): void
+{
+    if (!is_in_adresses($adress)) {
+        $connection = connecter();
+        $query = $connection->prepare("INSERT INTO Kazooha.User (ip) VALUE (:ip)");
+        $query->execute(array(
+            ":ip" => $adress
+        ));
+        if (isset($_SESSION["discord_id"])) {
+            set_id_of_adress($_SESSION["discord_id"], $adress);
+        }
+        $connection = null;
+    }
+}
+
+function is_in_adresses($adress): bool
+{
+    $res = array();
+    $connection = connecter();
+    $ip = get_user_ip();
+    $query = $connection->query("SELECT * FROM Kazooha.User WHERE ip='$ip'");
+    $query->setFetchMode(PDO::FETCH_OBJ);
+    return !(count($query->fetchAll()) == 0);
+}

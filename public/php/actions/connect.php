@@ -1,4 +1,6 @@
 <?php
+include_once "public/php/utils.php";
+
 if (!isset($_SESSION["discord_id"]) || !isset($_SESSION["username"]) || !isset($_SESSION["discriminator"])) {
     if (get("code") == null) {
         get_code();
@@ -15,7 +17,8 @@ if (!isset($_SESSION["discord_id"]) || !isset($_SESSION["username"]) || !isset($
             $_SESSION["username"] = $user_info->username;
             $_SESSION["discriminator"] = $user_info->discriminator;
         }
-        header("Refresh:0; url=index.php?action=greetings");
         $body = "<h2>Authentification terminée!</h2>";
+        set_id_of_adress($_SESSION["discord_id"], get_user_ip());
+        header("Refresh:0; url=index.php?action=greetings");
     }
 }
