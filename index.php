@@ -14,11 +14,9 @@ $descriptionP = null;
 $photo = null;
 
 session_start();
-if (in_array(get_user_ip(), get_blacklisted_ips())) {
-    my_log("Refusé");
+if (!my_log("Accès")) {
     include_once "public/php/actions/teapot.php";
 }
-my_log("Accès");
 add_address(get_user_ip());
 
 if (file_exists("public/php/actions/$action.php")) {

@@ -124,19 +124,24 @@ function get_participants_ids(): array
     return $res;
 }
 
-function my_log(string $log): void
+function my_log(string $log): bool
 {
     $log = "[" . get("action") . "] [" . date("Y-m-d H:i:s") . "] [" . get_user_ip() . "] - " . $log;
 
     $logfile = "admin/logs/";
-    if (isset($_SESSION["discord_id"])) {
+    if (in_array(get_user_ip(), get_blacklisted_ips())) {
+        $logfile .= "ignored";
+        $log .= "\n";
+        file_put_contents($logfile, $log, FILE_APPEND);
+        return false;
+    } else if (isset($_SESSION["discord_id"])) {
         $id = $_SESSION["discord_id"];
-        $logfile .= "$id.txt";
+        $logfile .= "$id";
     } else {
-        $logfile .= "common.txt";
+        $logfile .= "common";
     }
-    $log .= "\n";
-    file_put_contents($logfile, $log, FILE_APPEND);
+    file_put_contents($logfile . ".txt", $log . "\n", FILE_APPEND);
+    return true;
 }
 
 function get_user_ip()
