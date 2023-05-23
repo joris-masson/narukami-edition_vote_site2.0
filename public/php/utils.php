@@ -126,6 +126,7 @@ function get_participants_ids(): array
 
 function my_log(string $log): bool
 {
+    date_default_timezone_set("Europe/Paris");
     $log = "[" . get("action") . "] [" . date("Y-m-d H:i:s") . "] [" . get_user_ip() . "] - " . $log;
 
     $logfile = "admin/logs/";
