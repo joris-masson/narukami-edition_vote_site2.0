@@ -127,7 +127,7 @@ function get_participants_ids(): array
 function my_log(string $log): bool
 {
     date_default_timezone_set("Europe/Paris");
-    $log = "[" . get("action") . "] [" . date("Y-m-d H:i:s") . "] [" . get_user_ip() . "] - " . $log;
+    $log = "[" . get("action") . "] [" . date("Y-m-d H:i:s") . "] [" . get_user_ip() . ":" . $_SERVER["REMOTE_PORT"] . "] - " . $log;
 
     $logfile = "admin/logs/";
     if (in_array(get_user_ip(), get_blacklisted_ips())) {
@@ -200,10 +200,8 @@ function add_address(string $adress): void
 
 function is_in_adresses($adress): bool
 {
-    $res = array();
     $connection = connecter();
-    $ip = get_user_ip();
-    $query = $connection->query("SELECT * FROM Kazooha.User WHERE ip='$ip'");
+    $query = $connection->query("SELECT * FROM Kazooha.User WHERE ip='$adress'");
     $query->setFetchMode(PDO::FETCH_OBJ);
     return !(count($query->fetchAll()) == 0);
 }

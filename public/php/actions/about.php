@@ -7,6 +7,10 @@ $body = <<<HTML
 trouvez un bug, veuillez me contacter par discord: <code>JojoAz1605#1980</code>.</p>
 <p>Le code source n'est pas encore disponible, car une bonne partie du code a été repris d'un DM de web de ma licence.
 Je ne veux donc pas prendre le risque de le partager avant les résultats de la première session. Un repo github sera disponible après!</p>
+
+<h2>Bot discord</h2>
+<p>Un bot discord existe aussi, nommé Kazooha! Vous pouvez obtenir plus de détails <a href="/index.php?action=bot">ici</a>.</p>
+
 <h2>Serveurs</h2>
 <p>On a quelques serveurs(Minecraft et Terraria) de disponibles. Plus d'infos <a href="/index.php?action=server">ici</a>.</p>
 <h2>Utilisation des données</h2>
@@ -18,5 +22,7 @@ Je ne veux donc pas prendre le risque de le partager avant les résultats de la 
 </ul>
 <br>
 Ces données sont supprimées du serveur après votre déconnexion.
+<br>
+
 <iframe src="https://discord.com/widget?id=952557533514592286&theme=dark" width="350" height="500" allowtransparency="true" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
 HTML;
