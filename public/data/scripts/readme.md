@@ -1,0 +1,1 @@
+Ce dossier contient des scripts non PHP nécéssaires pour diverses actions.

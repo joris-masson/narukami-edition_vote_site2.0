@@ -1,8 +1,12 @@
 <?php
+/**
+ * Coeur du site, servant à décider de quoi afficher via la variable <code>action</code>.
+ * @author Joris MASSON
+ */
 require_once "admin/php/logins.php";
 require_once "config.php";
 require_once "public/php/utils.php";
-require_once("public/php/classes/Photo.php");
+require_once "public/php/classes/Photo.php";
 
 $action = get("action");
 
@@ -14,11 +18,12 @@ $descriptionP = null;
 $photo = null;
 
 session_start();
-if (!my_log("Accès")) {
+if (!my_log("Accès")) { // si la personne est blacklistée, renvoi d'un 418.
     include_once "public/php/actions/teapot.php";
 }
-add_address(get_user_ip());
+add_address(get_user_ip());  // stocke l'adresse IP de l'utilisateur en base de données
 
+/* Décision de la page à afficher */
 if (file_exists("public/php/actions/$action.php")) {
     include_once "public/php/actions/$action.php";
 } else {

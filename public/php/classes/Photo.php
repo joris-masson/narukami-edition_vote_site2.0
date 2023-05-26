@@ -12,39 +12,39 @@ class Photo
     /**
      * @var string $id L'ID de la photo.
      */
-    private $id;
+    private string $id;
 
     /**
      * @var string $dateS La date de soumission de la photo
      *
      * Format: <code>Y-m-d H:i:s</code>(format TIMESTAMP SQL).
      */
-    private $dateS;
+    private string $dateS;
 
     /**
      * @var string $author L'auteur de la photo.
      */
-    private $author;
+    private string $author;
 
     /**
      * @var string $title Le titre de la photo(optionnel).
      */
-    private $title;
+    private string $title;
 
     /**
      * @var string $descriptionP La description de la photo.
      */
-    private $descriptionP;
+    private string $descriptionP;
 
     /**
      * @var bool $show_result Est-ce que le score est affiché en public
      */
-    private $show_result;
+    private bool $show_result;
 
     /**
      * @var string URL de l'image de profil
      */
-    private $avatar_url;
+    private string $avatar_url;
 
     /**
      * Constructeur de la photo, initialise les attributs.
@@ -52,6 +52,8 @@ class Photo
      * @param string $author L'auteur de la photo
      * @param string $title Le titre de la photo
      * @param string $descriptionP La description de la photo
+     * @param bool $show_result Si le résultat peut être montré en public lors de l'annonce des résultats
+     * @param string $avatar_url L'URL de l'avatar de la personne soumettant la photo
      * @param string|null $dateS La date de soumission de la photo(<code>Y-m-d H:i:s</code>)
      */
     public function __construct(string $id, string $author, string $title, string $descriptionP, bool $show_result = false, string $avatar_url = "", string $dateS = null)
@@ -67,8 +69,8 @@ class Photo
 
     /**
      * Récupère les valeurs d'une photo d'un ID donné.
-     * @param int $id l'ID de la photo à récupérer
-     * @return array
+     * @param string $id l'ID de la photo à récupérer
+     * @return array|bool
      */
     public static function fetch_all_values(string $id): array|bool
     {
@@ -83,7 +85,6 @@ class Photo
     /**
      * Supprime la photo d'ID donné.
      * @param string $id L'ID de la photo à supprimer
-     * @return void
      */
     public static function delete_from_database(string $id): void
     {
@@ -197,6 +198,11 @@ class Photo
         }
     }
 
+    /**
+     * Affiche la photo pour le vote.
+     * @param $index l'index de la photo
+     * @return string un affichage pour le vote
+     */
     public function show_vote($index): string
     {
         return <<<HTML
@@ -239,7 +245,6 @@ class Photo
 
     /**
      * Met à jour la photo dans la base de données avec les valeurs actuelles.
-     * @return void
      */
     public function update_in_database(): void
     {
@@ -257,6 +262,11 @@ class Photo
         $connection = null;
     }
 
+    /**
+     * Méthode permettant de convertir du markdown Discord en HTML, en utilisant une bibli python.
+     * @param string $str une string normale avec du markdown Discord dedans
+     * @return string une string convertie
+     */
     function markdown_to_html(string $str): string
     {
         $cwd = getcwd();

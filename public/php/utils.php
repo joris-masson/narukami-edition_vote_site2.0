@@ -1,8 +1,17 @@
 <?php
+/**
+ * Fichier contenant des fonctions utilitaires.
+ * @author Joris MASSON
+ */
 
 use classes\Photo;
 
-function exchange_token($code)
+/**
+ * Prends un code donné par discord, et renvoie un token.
+ * @param string $code le code donné par discord
+ * @return string un token
+ */
+function exchange_token(string $code): string
 {
     $data = array(
         "client_id" => OAUTH2_CLIENT_ID,
@@ -15,8 +24,8 @@ function exchange_token($code)
     // use key 'http' even if you send the request to https://...
     $options = array(
         'http' => array(
-            'header'  => "Content-type: application/x-www-form-urlencoded",
-            'method'  => 'POST',
+            'header' => "Content-type: application/x-www-form-urlencoded",
+            'method' => 'POST',
             'content' => http_build_query($data)
         )
     );
@@ -25,16 +34,25 @@ function exchange_token($code)
     return $result->access_token;
 }
 
-function get_user_info($token) {
+/**
+ * Récupère les infos de l'utilisateur en utilisant le token.
+ * @param string $token le token
+ * @return array les infos de l'utilisateur
+ */
+function get_user_info(string $token): array
+{
     $options = array(
         'http' => array(
-            'header'  => "Authorization: Bearer $token",
-            'method'  => 'GET',
+            'header' => "Authorization: Bearer $token",
+            'method' => 'GET',
         )
     );
     return json_decode(file_get_contents(USER_API_URL, false, stream_context_create($options)));
 }
 
+/**
+ * Permet de demander à Discord un code en demandant à l'utilisateur de se connecter via Discord.
+ */
 function get_code() {
     $params = array(
         'client_id' => OAUTH2_CLIENT_ID,
@@ -52,7 +70,8 @@ function get_code() {
  * @param string $key la clé de la valeur à récupérer
  * @return string|null la valeur associée à la clé, ou null si elle n'existe pas
  */
-function get(string $key) {
+function get(string $key): string|null
+{
     return key_exists($key, $_GET) ? trim($_GET[$key]) : null;
 }
 
@@ -95,6 +114,10 @@ function connecter(): PDO
     }
 }
 
+/**
+ * Construit la liste des photos pour les votes.
+ * @return string la liste des photos pour les votes
+ */
 function construct_photo_list(): string
 {
     $res = "";
@@ -111,6 +134,10 @@ function construct_photo_list(): string
     return $res;
 }
 
+/**
+ * Récupère la liste des ID discord des participants.
+ * @return array liste des ID discord des participants
+ */
 function get_participants_ids(): array
 {
     $connection = connecter();
@@ -124,6 +151,11 @@ function get_participants_ids(): array
     return $res;
 }
 
+/**
+ * Fonction de log.
+ * @param string $log le truc à log
+ * @return bool si le log s'est bien passé(que la personne n'est pas blacklistée)
+ */
 function my_log(string $log): bool
 {
     date_default_timezone_set("Europe/Paris");
@@ -145,6 +177,10 @@ function my_log(string $log): bool
     return true;
 }
 
+/**
+ * Récupère l'IP de l'utilisateur.
+ * @see https://stackoverflow.com/a/13646848
+ */
 function get_user_ip()
 {
     if (array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER) && !empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -159,6 +195,10 @@ function get_user_ip()
     }
 }
 
+/**
+ * Récupère une liste des IPs blacklistées du site.
+ * @return array une liste des IPs blacklistées
+ */
 function get_blacklisted_ips(): array
 {
     $res = array();
@@ -172,6 +212,11 @@ function get_blacklisted_ips(): array
     return $res;
 }
 
+/**
+ * Associe un ID Discord à une IP dans la base de données.
+ * @param string $id ID Discord
+ * @param string $adress une adresse IP
+ */
 function set_id_of_adress(string $id, string $adress): void
 {
     $connection = connecter();
@@ -183,6 +228,10 @@ function set_id_of_adress(string $id, string $adress): void
     $connection = null;
 }
 
+/**
+ * Ajoute une adresse IP dans la base de données.
+ * @param string $adress une adresse IP
+ */
 function add_address(string $adress): void
 {
     if (!is_in_adresses($adress)) {
@@ -198,7 +247,12 @@ function add_address(string $adress): void
     }
 }
 
-function is_in_adresses($adress): bool
+/**
+ * Est-ce que l'IP existe déjà dans la base de données?
+ * @param string $adress une adresse IP
+ * @return bool oui ou non.
+ */
+function is_in_adresses(string $adress): bool
 {
     $connection = connecter();
     $query = $connection->query("SELECT * FROM Kazooha.User WHERE ip='$adress'");
