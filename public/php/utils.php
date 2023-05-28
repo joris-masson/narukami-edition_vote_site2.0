@@ -236,9 +236,10 @@ function add_address(string $adress): void
 {
     if (!is_in_adresses($adress)) {
         $connection = connecter();
-        $query = $connection->prepare("INSERT INTO Kazooha.User (ip) VALUE (:ip)");
+        $query = $connection->prepare("INSERT INTO Kazooha.User (ip, country) VALUE (:ip, :country)");
         $query->execute(array(
-            ":ip" => $adress
+            ":ip" => $adress,
+            ":country" => get_country($adress)
         ));
         if (isset($_SESSION["discord_id"])) {
             set_id_of_adress($_SESSION["discord_id"], $adress);
@@ -258,4 +259,15 @@ function is_in_adresses(string $adress): bool
     $query = $connection->query("SELECT * FROM Kazooha.User WHERE ip='$adress'");
     $query->setFetchMode(PDO::FETCH_OBJ);
     return !(count($query->fetchAll()) == 0);
+}
+
+/**
+ * Récupère le pays de l'utilisateur, utilisé pour éviter le spam.
+ * @param string $ip l'ip de l'utilisateur
+ * @return string|null le pays
+ */
+function get_country($ip): string|null
+{
+    $res = json_decode(file_get_contents("http://ipinfo.io/$ip/json"));
+    return $res->country;
 }
