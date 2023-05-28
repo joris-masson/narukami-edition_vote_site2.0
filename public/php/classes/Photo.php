@@ -19,7 +19,7 @@ class Photo
      *
      * Format: <code>Y-m-d H:i:s</code>(format TIMESTAMP SQL).
      */
-    private string $dateS;
+    private string|null $dateS;
 
     /**
      * @var string $author L'auteur de la photo.
@@ -44,7 +44,7 @@ class Photo
     /**
      * @var string URL de l'image de profil
      */
-    private string $avatar_url;
+    private string|null $avatar_url;
 
     /**
      * Constructeur de la photo, initialise les attributs.
