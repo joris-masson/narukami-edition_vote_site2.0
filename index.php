@@ -24,7 +24,7 @@ if (!my_log("Accès")) { // si la personne est blacklistée, renvoi d'un 418.
 add_address(get_user_ip());  // stocke l'adresse IP de l'utilisateur en base de données
 
 /* Décision de la page à afficher */
-if (file_exists("public/php/actions/$action.php")) {
+if (is_action_correct($action)) {
     include_once "public/php/actions/$action.php";
 } else {
     $body = "<h2>Bienvenue sur Narukami Edition(le site)!</h2>";

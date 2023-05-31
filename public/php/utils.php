@@ -271,3 +271,15 @@ function get_country($ip): string|null
     $res = json_decode(file_get_contents("http://ipinfo.io/$ip/json"));
     return $res->country;
 }
+
+function is_action_correct(string $action): bool
+{
+    $location = "public/php/actions/$action.php";
+    if (!file_exists($location)) {
+        return false;
+    }
+    if (str_contains($action, "/")) {
+        return false;
+    }
+    return true;
+}
