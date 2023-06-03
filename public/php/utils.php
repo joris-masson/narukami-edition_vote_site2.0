@@ -272,14 +272,18 @@ function get_country($ip): string|null
     return $res->country;
 }
 
-function is_action_correct(string $action): bool
+function is_action_correct(string|null $action): bool
 {
-    $location = "public/php/actions/$action.php";
-    if (!file_exists($location)) {
+    if (is_null($action)) {
         return false;
+    } else {
+        $location = "public/php/actions/$action.php";
+        if (!file_exists($location)) {
+            return false;
+        }
+        if (str_contains($action, "/")) {
+            return false;
+        }
+        return true;
     }
-    if (str_contains($action, "/")) {
-        return false;
-    }
-    return true;
 }
