@@ -39,7 +39,7 @@ function exchange_token(string $code): string
  * @param string $token le token
  * @return array les infos de l'utilisateur
  */
-function get_user_info(string $token): array
+function get_user_info(string $token): stdClass
 {
     $options = array(
         'http' => array(
