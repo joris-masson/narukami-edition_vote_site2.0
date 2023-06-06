@@ -5,7 +5,6 @@ if (!isset($_SESSION["discord_id"]) || !isset($_SESSION["username"])) {
     $discord_id = $_SESSION["discord_id"];
 
     $body = "<h2>Hello!</h2>";
-    var_dump($_SESSION);
     $username = $_SESSION["username"];
     if ($_SESSION["use_new_names"]) {
         $global_name = $_SESSION["global_name"];
