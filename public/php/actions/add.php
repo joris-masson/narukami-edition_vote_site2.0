@@ -30,7 +30,7 @@ if (IS_VOTING_TIME) {
         $_SESSION["username"],
         !empty($_POST["title"]) ? $_POST['title'] : "Sans titre",
         trim($_POST['descriptionP']),
-        $_POST["show_result"] === "1",
+        @$_POST["show_result"] === "1",
         $_SESSION["avatar_url"]
     );
 
