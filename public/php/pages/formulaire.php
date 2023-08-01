@@ -8,7 +8,6 @@ if (!empty($photo)) {
     $author = $photo->get_author();
     $title = $photo->get_title();
     $descriptionP = $photo->get_descriptionP();
-    $dateP = $photo->get_dateP();
 }
 
 $body .= <<<HTML
