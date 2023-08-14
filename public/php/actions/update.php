@@ -32,8 +32,8 @@ if (IS_VOTING_TIME) {
     } else {
         /* Attribution des variables */
         $author = $_SESSION["username"];
-        $title = !empty($_POST["title"]) ? $_POST['title'] : "Sans titre";
-        $descriptionP = trim($_POST['descriptionP']);
+        $title = !empty($_POST["title"]) ? str_replace("'", "&#39;", $_POST['title']) : "Sans titre";
+        $descriptionP = str_replace("'", "&#39;", trim($_POST['descriptionP']));
         $show_result = isset($_POST["show_result"]);
 
 
