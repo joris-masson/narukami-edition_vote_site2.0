@@ -1,5 +1,6 @@
 <?php
 $body = "<h2>Go voter!</h2>";
+$body .= "<p>Le barème est le suivant: <ul class='about'><li>Titre(point bonus) -> 1 point maximum</li><li>Description -> 4 points maximum</li><li>Photo -> 6 points maximum</li></ul></p>";
 
 if (!IS_VOTING_TIME) {
     $body = "<h2>Ce n'est pas le moment de voter.</h2>";
