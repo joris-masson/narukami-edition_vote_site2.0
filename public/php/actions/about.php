@@ -2,13 +2,13 @@
 
 $body = <<<HTML
 <h2>À propos</h2>
-<p>Ce site a pour but la gestion des concours photo du serveur Narukami Edition!</p>
+<p>Ce site a pour but la gestion des concours photo du serveur Narukami Edition !</p>
 <p>Il est actuellement en développement, mais est accessible au public, afin de tester quelques petites choses. Si vous
-trouvez un bug, veuillez me contacter par discord: <code>JojoAz1605#1980</code>, ou ouvrir une issue sur le repo Github.</p>
+trouvez un bug, veuillez me contacter par discord: <code>jojoaz1605</code>, ou ouvrir une issue sur le repo Github.</p>
 <p>Le code source est disponible <a href="https://github.com/JojoAz1605/narukami-edition_vote_site2.0">ici</a>.</p>
 
 <h2>Bot discord</h2>
-<p>Un bot discord existe aussi, nommé Kazooha! Vous pouvez obtenir plus de détails <a href="/index.php?action=bot">ici</a>.</p>
+<p>Un bot discord existe aussi, nommé Kazooha ! Vous pouvez obtenir plus de détails <a href="/index.php?action=bot">ici</a>.</p>
 
 <h2>Serveurs</h2>
 <p>On a quelques serveurs(Minecraft et Terraria) de disponibles. Plus d'infos <a href="/index.php?action=server">ici</a>.</p>
@@ -17,7 +17,7 @@ trouvez un bug, veuillez me contacter par discord: <code>JojoAz1605#1980</code>,
 <p>Ce site possède une sorte de fonction de compte utilisateur en vous connectant via discord, seules ces informations seront utilisées:</p>
 <ul class="about">
 <li>Votre identifiant discord</li>
-<li>Votre nom d'utilisateur(ancien ou nouveau format)</li>
+<li>Votre nom d'utilisateur</li>
 <li>Le hash de votre photo de profil, permettant d'accéder à votre photo de profil</li>
 </ul>
 <p>Ces données sont supprimées du serveur après votre déconnexion.</p>
