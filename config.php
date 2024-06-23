@@ -1,6 +1,6 @@
 <?php
-const IS_VOTING_TIME = true;
-const CAN_SEE_PHOTOS = true;
+const IS_VOTING_TIME = false;
+const CAN_SEE_PHOTOS = false;
 const CAN_SEE_RESULTS = false;
 
 const AUTHORIZE_URL = "https://discord.com/api/oauth2/authorize";
