@@ -1,5 +1,5 @@
 <?php
-const IS_VOTING_TIME = false;
+const IS_VOTING_TIME = true;
 const CAN_SEE_PHOTOS = true;
 const CAN_SEE_RESULTS = false;
 

@@ -37,7 +37,7 @@ function exchange_token(string $code): string
 /**
  * Récupère les infos de l'utilisateur en utilisant le token.
  * @param string $token le token
- * @return array les infos de l'utilisateur
+ * @return stdClass les infos de l'utilisateur
  */
 function get_user_info(string $token): stdClass
 {

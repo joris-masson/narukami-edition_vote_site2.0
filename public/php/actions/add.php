@@ -30,7 +30,7 @@ if (IS_VOTING_TIME) {
         $_SESSION["username"],
         !empty($_POST["title"]) ? $_POST['title'] : "Sans titre",
         trim($_POST['descriptionP']),
-        $_POST["show_result"] === "1",
+        @$_POST["show_result"] === "1",
         $_SESSION["avatar_url"]
     );
 
@@ -55,6 +55,6 @@ function check_errors_add(string $descriptionP, array $file): array
     $errors = array( "descriptionP" => null, "photo" => null);  // pour la gestion des erreurs de formulaire
     if ($descriptionP == "") $errors["descriptionP"] = "Il manque une description à la photo";
     if ($file["error"] == 4) $errors["photo"] = "Il manque le plus important: la photo!";  // code erreur 4 -> pas de fichier
-
+    if ($file["error"] == 1) $errors["photo"] = "La photo dépasse la taille maximale autorisée(20M)";
     return $errors;
 }
